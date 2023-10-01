@@ -1,9 +1,13 @@
 import React from 'react';
+import { getFeaturedEvents } from '../dummy-data';
 
 function StartingPage() {
+  // get all featured events
+  const featuredEvents = getFeaturedEvents;
+
   return (
     <div>
-      <h1>Show Featured Events</h1>
+      
     </div>
   );
 }
