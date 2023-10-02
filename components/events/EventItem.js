@@ -1,7 +1,10 @@
 import React from 'react';
-import Link from 'next/link';
 // to use css module feature, need to import the object (can be named classes/styles etc)
 import classes from './eventItem.module.css';
+import Button from '../ui/Button';
+import DateIcon from '../icons/DateIcon';
+import AddressIcon from '../icons/AddressIcon';
+import ArrowRightIcon from '../icons/ArrowRightIcon';
 
 function EventItem(props) {
   const { title, image, date, location, id } = props;
@@ -13,10 +16,10 @@ function EventItem(props) {
     year: 'numeric',
   });
 
-// transform address
-const formattedAddress = location.replace(',', '\n');
+  // transform address
+  const formattedAddress = location.replace(',', '\n');
 
-const exploreLink = `/events/${id}`;
+  const exploreLink = `/events/${id}`;
 
   return (
     <li className={classes.item}>
@@ -25,14 +28,21 @@ const exploreLink = `/events/${id}`;
         <div className={classes.summary}>
           <h2>{title}</h2>
           <div className={classes.date}>
+            <DateIcon />
             <time>{formattedDate}</time>
           </div>
           <div className={classes.address}>
+            <AddressIcon />
             <address>{formattedAddress}</address>
           </div>
         </div>
         <div className={classes.actions}>
-          <Link href={exploreLink}>Explore Event</Link>
+          <Button link={exploreLink}>
+            <span>ExploreEvent</span>
+            <span className={classes.icon}>
+              <ArrowRightIcon />
+            </span>
+          </Button>
         </div>
       </div>
     </li>
