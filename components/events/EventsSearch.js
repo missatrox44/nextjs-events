@@ -1,21 +1,37 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Button from '../ui/Button';
 import classes from './eventsSearch.module.css';
 
 function EventsSearch(props) {
+  const yearInputRef = useRef();
+  const monthInputRef = useRef();
+
+  // function that will be triggered when form is submitted
+  function submitHandler(event) {
+    event.preventDefault();
+
+    // only interested in using the values once -> useRef
+    // use .current to get access to actual value the ref is connected to
+    const selectedYear = yearInputRef.current.value;
+    const selectedMonth = monthInputRef.current.value;
+
+    // can name it whatever -> calling it onSearch
+    props.onSearch(selectedYear, selectedMonth);
+  }
+
   return (
-    <form className={classes.form}>
+    <form className={classes.form} onSubmit={submitHandler}>
       <div className={classes.controls}>
         <div className={classes.control}>
           <label htmlFor="year">Year</label>
-          <select id="year">
+          <select id="year" ref={yearInputRef}>
             <option value="2021">2021</option>
             <option value="2022">2022</option>
           </select>
         </div>
         <div className={classes.control}>
           <label htmlFor="month">Month</label>
-          <select id="month">
+          <select id="month" ref={monthInputRef}>
             <option value="1">January</option>
             <option value="2">February</option>
             <option value="3">March</option>
