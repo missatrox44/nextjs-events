@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { getFilteredEvents } from '../../dummy-data';
+import EventList from '../../components/events/EventList';
 
 function FilteredEventsPage() {
   const router = useRouter();
@@ -36,7 +37,7 @@ function FilteredEventsPage() {
   // get filteredEvents array and pass in converted values
   const filteredEvents = getFilteredEvents({
     year: numYear,
-    month: numMonth,
+    month: numMonth, 
   });
 
   // check if its an empty array or valid
@@ -46,7 +47,7 @@ function FilteredEventsPage() {
 
   return (
     <div>
-      <h1>Filtered Events Page</h1>
+      <EventList items={filteredEvents} />
     </div>
   );
 }
