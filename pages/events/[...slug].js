@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { useRouter } from 'next/router';
 import { getFilteredEvents } from '../../dummy-data';
 import EventList from '../../components/events/EventList';
+import ResultsTitle from '../../components/events/ResultsTitle';
 
 function FilteredEventsPage() {
   const router = useRouter();
@@ -37,7 +38,7 @@ function FilteredEventsPage() {
   // get filteredEvents array and pass in converted values
   const filteredEvents = getFilteredEvents({
     year: numYear,
-    month: numMonth, 
+    month: numMonth,
   });
 
   // check if its an empty array or valid
@@ -45,10 +46,14 @@ function FilteredEventsPage() {
     return <p>No events found for the chosen filter!</p>;
   }
 
+  // provide date prop for ResultsTitle component
+  const date = new Date(numYear, numMonth - 1);
+
   return (
-    <div>
+    <Fragment>
+      <ResultsTitle date={date} />
       <EventList items={filteredEvents} />
-    </div>
+    </Fragment>
   );
 }
 
