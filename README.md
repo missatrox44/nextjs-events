@@ -1,3 +1,5 @@
+App created to learn about File Based routing with Next.js
+
 # Routes
 `/ 						Starting page (show featured Events)
 /events					Events Page (show all Events)
