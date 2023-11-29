@@ -6,13 +6,15 @@ import EventLogistics from '../../components/eventDetail/EventLogistics';
 import EventContent from '../../components/eventDetail/EventContent';
 import ErrorAlert from '../../components/ui/ErrorAlert';
 
-function EventDetailPage() {
-  const router = useRouter();
+function EventDetailPage(props) {
+  // const router = useRouter();
 
-  const eventId = router.query.eventId;
-  console.log('event id: ', eventId);
-  const event = getEventById(eventId);
-  console.log('getEventById(eventId: ', getEventById(eventId) )
+  // const eventId = router.query.eventId;
+  // console.log('event id: ', eventId);
+  // const event = getEventById(eventId);
+  // console.log('getEventById(eventId: ', getEventById(eventId) )
+
+  const event = props.event;
 
   if (!event) {
   
@@ -33,6 +35,17 @@ function EventDetailPage() {
       </EventContent>
     </Fragment>
   );
+}
+
+export async function getServerSideProps(context) {
+  const eventId = context.params.eventId;
+  const event = getEventById(eventId);
+
+  if (!event) {
+    return { notFound: true };
+  }
+
+  return { props: { event } } ;
 }
 
 export default EventDetailPage;
