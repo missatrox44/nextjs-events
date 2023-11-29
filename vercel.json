@@ -8,8 +8,20 @@
   ],
   "routes": [
     {
+      "src": "/events/([^/]+)/([^/]+)",
+      "dest": "/events/$1/$2"
+    },
+    {
+      "src": "/events/([^/]+)",
+      "dest": "/events/[eventId].js?eventId=$1"
+    },
+    {
+      "src": "/events/(.*)",
+      "dest": "/events/[...slug].js?slug=$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "/"
+      "dest": "/$1"
     }
   ]
 }
