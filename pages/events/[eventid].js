@@ -10,7 +10,9 @@ function EventDetailPage() {
   const router = useRouter();
 
   const eventId = router.query.eventId;
+  console.log('event id: ', eventId);
   const event = getEventById(eventId);
+  console.log('getEventById(eventId: ', getEventById(eventId) )
 
   if (!event) {
   

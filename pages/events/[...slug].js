@@ -52,6 +52,7 @@ function FilteredEventsPage() {
     month: numMonth,
   });
 
+
   // check if its an empty array or valid
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
